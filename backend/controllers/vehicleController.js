@@ -69,7 +69,7 @@ const addVehicle = async (req, res) => {
     }
 };
 
-// --- NEW: Get Unassigned Vehicles ---
+// --- Get Unassigned Vehicles ---
 const getUnassignedVehicles = async (req, res) => {
     // TODO: Admin Auth
     try {
@@ -89,7 +89,7 @@ const getUnassignedVehicles = async (req, res) => {
     }
 };
 
-// --- NEW: Get Vehicle Options for Editing a Specific Driver ---
+// ---  Get Vehicle Options for Editing a Specific Driver ---
 const getVehicleOptionsForDriver = async (req, res) => {
     const driverId = req.params.driverId;
     // TODO: Admin Auth
@@ -174,8 +174,8 @@ const deleteVehicle = async (req, res) => {
 module.exports = {
     getAllVehicles,
     addVehicle,
-    getUnassignedVehicles,        // <-- Export new
-    getVehicleOptionsForDriver, // <-- Export new
+    getUnassignedVehicles,     
+    getVehicleOptionsForDriver, 
     deleteVehicle,
     // Add updateVehicle, deleteVehicle later if needed
 };

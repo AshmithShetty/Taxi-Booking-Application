@@ -43,7 +43,7 @@ const getDriverDetails = async (req, res) => {
 };
 
 
-// --- NEW: Get Drivers managed by a specific Admin ---
+// --- Get Drivers managed by a specific Admin ---
 const getAdminDrivers = async (req, res) => {
     const adminId = req.params.adminId;
     // TODO: Authorization: Ensure logged-in admin IS adminId
@@ -78,7 +78,7 @@ const getAdminDrivers = async (req, res) => {
     }
 };
 
-// --- NEW: Add a Driver (associated with the calling admin) ---
+// --- Add a Driver (associated with the calling admin) ---
 const addDriver = async (req, res) => {
     const adminId = req.params.adminId;
     const { name, phone, email, password, vehicle_id } = req.body;
@@ -144,7 +144,7 @@ const addDriver = async (req, res) => {
     }
 };
 
-// --- NEW: Update Driver Details ---
+// --- Update Driver Details ---
 const updateDriver = async (req, res) => {
     const driverIdToUpdate = req.params.driverId;
     const { name, phone, email, vehicle_id } = req.body;
@@ -158,7 +158,7 @@ const updateDriver = async (req, res) => {
     if (!emailRegex.test(email)) { /* ... */ }
 
     try {
-        // --- NEW: Check for active rides BEFORE proceeding ---
+        // --- Check for active rides BEFORE proceeding ---
         const activeStatuses = ['payment done', 'request accepted']; // Statuses indicating an ongoing ride
         const activeRideCheckQuery = `
             SELECT COUNT(*) as activeRideCount
@@ -208,7 +208,7 @@ const updateDriver = async (req, res) => {
 };
 
 
-// --- NEW: Check if a driver has active rides ---
+// ---  Check if a driver has active rides ---
 const checkActiveRides = async (req, res) => {
     const driverId = req.params.driverId;
     // TODO: Authorization check
@@ -234,7 +234,7 @@ const checkActiveRides = async (req, res) => {
 };
 
 
-// --- NEW: Deactivate Driver (Soft Delete) ---
+// --- Deactivate Driver (Soft Delete) ---
 const deactivateDriver = async (req, res) => {
     const driverId = req.params.driverId;
     // TODO: Authorization check
@@ -279,7 +279,7 @@ const deactivateDriver = async (req, res) => {
     }
 };
 
-// --- NEW: Activate Driver ---
+// --- Activate Driver ---
 const activateDriver = async (req, res) => {
     const driverId = req.params.driverId;
     const { vehicle_id } = req.body; // Expect vehicle_id in body

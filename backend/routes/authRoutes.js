@@ -8,7 +8,7 @@ const router = express.Router();
 // POST /api/auth/login
 router.post('/login', loginUser);
 
-// POST /api/auth/register/customer  <- NEW ROUTE
+// POST /api/auth/register/customer 
 router.post('/register/customer', registerCustomer);
 
 module.exports = router;

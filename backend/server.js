@@ -6,9 +6,9 @@ const db = require('./db');
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
-const customerRoutes = require('./routes/customerRoutes'); // <-- NEW
-const rideRoutes = require('./routes/rideRoutes');       // <-- NEW
-const ratingRoutes = require('./routes/ratingRoutes');     // <-- NEW
+const customerRoutes = require('./routes/customerRoutes');
+const rideRoutes = require('./routes/rideRoutes');      
+const ratingRoutes = require('./routes/ratingRoutes');    
 const paymentRoutes = require('./routes/paymentRoutes');
 const driverRoutes = require('./routes/driverRoutes');
 const performanceRoutes = require('./routes/performanceRoutes');
@@ -23,7 +23,7 @@ const PORT = process.env.BACKEND_PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-// --- NEW: Middleware to disable caching for ALL API routes ---
+
 // Place this BEFORE any '/api' route definitions
 app.use('/api', (req, res, next) => {
   console.log(`Applying no-cache headers to: ${req.method} ${req.originalUrl}`); // Optional: Log requests hitting this middleware
@@ -38,12 +38,12 @@ app.use('/api', (req, res, next) => {
 
 // --- API Routes ---
 app.use('/api/auth', authRoutes);
-app.use('/api/customers', customerRoutes); // <-- Mount customer routes
-app.use('/api/rides', rideRoutes);       // <-- Mount ride routes
-app.use('/api/ratings', ratingRoutes);     // <-- Mount rating routes
-app.use('/api/payments', paymentRoutes); 
-app.use('/api/drivers', driverRoutes); // <-- MOUNT Driver Routes
-app.use('/api/drivers/:driverId/performance', performanceRoutes); // <-- MOUNT Performance Routes
+app.use('/api/customers', customerRoutes);
+app.use('/api/rides', rideRoutes);       
+app.use('/api/ratings', ratingRoutes);    
+app.use('/api/payments', paymentRoutes);
+app.use('/api/drivers', driverRoutes); 
+app.use('/api/drivers/:driverId/performance', performanceRoutes); 
 app.use('/api/admins', adminRoutes);
 app.use('/api/analysis', analysisRoutes);
 app.use('/api/vehicles', vehicleRoutes);

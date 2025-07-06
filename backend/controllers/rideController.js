@@ -14,7 +14,7 @@ function generateVerificationCode(length = 6) {
 }
 // --- End Helper ---
 
-// --- UPDATED: getCustomerRidesByStatus function ---
+// --- getCustomerRidesByStatus function ---
 const getCustomerRidesByStatus = async (req, res) => {
     const customerId = req.params.customerId;
     const statusQuery = req.query.statuses;

@@ -22,7 +22,7 @@ router.delete('/draft/:rideId', deleteDraftRide);
 router.delete('/cancel/:rideId', /* authMiddleware, */ cancelRide); 
 // Add other ride routes later
 
-// --- NEW: Driver Ride Routes ---
+
 // GET available requests (filtered by vehicle type)
 router.get('/available', /* driverAuthMiddleware, */ getAvailableRideRequests);
 // PUT to accept a request

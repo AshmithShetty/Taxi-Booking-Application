@@ -2,7 +2,7 @@
 const db = require('../db');
 // NOTE: No password hashing (bcrypt) is used, as previously instructed. Passwords stored/compared as plain text.
 
-// --- UPDATED loginUser function ---
+
 const loginUser = async (req, res) => {
     const { name, password, role } = req.body;
 

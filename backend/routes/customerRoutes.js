@@ -9,7 +9,7 @@ const router = express.Router();
 // GET /api/customers/:id
 router.get('/:id', /* authMiddleware, */ getCustomerById);
 
-// --- UNCOMMENT and ensure updateCustomer is imported ---
+
 // PUT /api/customers/:id
 router.put('/:id', /* authMiddleware, */ updateCustomer); // Ensure user can only update their own account
 
