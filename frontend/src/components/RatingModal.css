@@ -1,0 +1,100 @@
+/* frontend/src/components/RatingModal.css */
+
+.rating-modal-overlay {
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #333; /* Text color inside modal */
+}
+
+.rating-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700; /* Use Bold Rubik */
+}
+.rating-modal-content p {
+    margin-bottom: 20px;
+}
+
+.rating-stars {
+    margin-bottom: 25px;
+}
+
+.star-button {
+    background: none;
+    border: none;
+    font-size: 2.5rem; /* Adjust star size */
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.star-button:hover {
+    color: #f8d64e; /* Hover color */
+}
+
+.star-button.selected {
+    color: #f6c600; /* Selected star color (matching theme yellow) */
+}
+
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around; /* Or space-between */
+    margin-top: 20px;
+}
+
+.modal-cancel-button,
+.modal-submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500; /* Medium Rubik */
+    min-width: 120px;
+    font-family: inherit; /* Inherit Rubik */
+}
+
+.modal-cancel-button {
+    background-color: #aeb6b4; /* Back button color */
+    color: white;
+}
+
+.modal-submit-button {
+    background-color: #5b89ac; /* Theme button color */
+    color: white;
+}
+
+.modal-cancel-button:hover,
+.modal-submit-button:hover {
+    opacity: 0.9;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    min-height: 1.2em; /* Reserve space */
+}

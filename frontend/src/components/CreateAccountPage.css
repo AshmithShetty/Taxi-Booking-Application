@@ -1,0 +1,166 @@
+/* frontend/src/components/CreateAccountPage.css */
+
+/* Base styles */
+.create-account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.create-account-container {
+    background-color: #f6c600; /* Yellow background */
+    padding: 30px 35px; /* Adjusted padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Adjusted max-width slightly */
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+    display: block;
+    margin: 0 auto 30px auto;
+    max-width: 150px; /* Control width */
+    height: auto;     /* Maintain aspect ratio */
+}
+
+/* Form Group Layout */
+.form-group {
+    display: flex;
+    /* Default to column on small screens maybe, or keep row? Let's keep row for now */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px; /* Consistent margin */
+    gap: 10px; /* Gap between label and input container */
+}
+
+.form-group label {
+    flex-basis: 130px; /* Slightly more space for longer labels like "Confirm Password" */
+    flex-shrink: 0; /* Prevent label from shrinking */
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    font-size: 0.95rem; /* Match input size */
+    box-sizing: border-box;
+}
+
+/* General Input Styles */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] { /* Exclude password inputs initially */
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+    min-width: 150px; /* Prevent inputs from getting too small */
+}
+
+/* --- Styles for Password Input Wrapper and Toggle Button --- */
+.password-input-wrapper {
+    position: relative; /* For positioning the button */
+    display: flex; /* Takes up space */
+    flex-grow: 1; /* Takes remaining space in the form-group */
+    width: auto;
+    min-width: 150px; /* Match other inputs */
+    align-items: center;
+}
+
+/* Adjust password input within the wrapper */
+.password-input-wrapper input[type="password"],
+.password-input-wrapper input[type="text"] { /* Target both types */
+    width: 100%; /* Fill the wrapper */
+    /* Add padding-right for the button */
+    padding: 10px 40px 10px 12px; /* Right padding adjusted */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Match other inputs */
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Toggle Button Styles */
+.password-toggle-btn {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 38px; /* Width of the button */
+    background: none;
+    border: none;
+    border-left: 1px solid #eee; /* Optional subtle separator */
+    border-top-right-radius: 7px; /* Match input rounding */
+    border-bottom-right-radius: 7px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #555; /* Icon color */
+    font-size: 1.2rem; /* Icon size */
+    line-height: 1; /* Prevent extra spacing */
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.password-toggle-btn:hover {
+    color: #000; /* Darken icon on hover */
+}
+/* --- End Password Toggle Styles --- */
+
+/* Focus Styles for Inputs */
+.form-group input:focus,
+.password-input-wrapper input:focus {
+    outline: none;
+    border-color: #5b89ac;
+    box-shadow: 0 0 0 2px rgba(91, 137, 172, 0.2);
+}
+
+
+/* Button group styling */
+.button-group {
+    margin-top: 30px; /* Adjusted margin */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* General button style */
+.back-button,
+.save-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    color: white;
+    min-width: 130px;
+    text-align: center;
+    font-family: inherit;
+}
+
+/* Specific button colors */
+.back-button { background-color: #aeb6b4; }
+.save-button { background-color: #5b89ac; }
+.back-button:hover, .save-button:hover { opacity: 0.85; }
+
+/* Error Message */
+.error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    /* Removed negative bottom margin for better spacing */
+    text-align: center;
+    width: 100%;
+}

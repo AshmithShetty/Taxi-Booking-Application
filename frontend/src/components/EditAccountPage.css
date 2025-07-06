@@ -1,0 +1,205 @@
+/* frontend/src/components/EditAccountPage.css */
+
+.edit-account-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* --- Reusing Header Styles --- */
+.dashboard-header {
+    background-color: #f6c600;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+.header-logo { height: 45px; width: auto; }
+.header-nav button {
+    background-color: #5b89ac; /* Theme blue */
+    color: white; border: none; padding: 8px 15px; border-radius: 6px;
+    cursor: pointer; font-size: 0.9rem; font-weight: 500;
+    transition: opacity 0.2s ease; font-family: inherit;
+}
+.header-nav button:hover { opacity: 0.85; }
+/* --- End Header Styles --- */
+
+
+.edit-account-body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    align-items: flex-start; /* Align container to top */
+    padding: 40px 20px; /* Add padding */
+}
+
+.edit-account-container {
+    background-color: white;
+    padding: 30px 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px; /* Adjust width as needed */
+    box-sizing: border-box;
+}
+
+.edit-account-container h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px; /* More space below title */
+    color: #333;
+    font-weight: 700;
+    border-bottom: 2px solid #f6c600; /* Accent */
+    padding-bottom: 10px;
+}
+
+.form-group-edit {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.form-group-edit label {
+    display: block; /* Label on its own line */
+    margin-bottom: 8px; /* Space between label and input */
+    font-weight: 500; /* Medium weight */
+    color: #444;
+}
+
+/* --- Styles for Input fields --- */
+.form-group-edit input[type="email"],
+.form-group-edit input[type="tel"] { /* Style email and phone separately */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+/* --- Wrapper for password input + button --- */
+.password-input-wrapper {
+    position: relative; /* Allows absolute positioning of the button */
+    display: flex;
+    align-items: center;
+}
+
+/* --- Password input specific styles --- */
+.password-input-wrapper input[type="password"],
+.password-input-wrapper input[type="text"] { /* Target both types used for password */
+    width: 100%; /* Take full width within the wrapper */
+    padding: 10px 40px 10px 12px; /* Add padding-right for button, maintain others */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+/* --- Toggle Button Styles --- */
+.password-toggle-btn {
+    position: absolute;
+    right: 1px; /* Position inside the input area, adjust for border */
+    top: 1px; /* Align top */
+    bottom: 1px; /* Align bottom */
+    width: 38px; /* Fixed width for the button */
+    background: none; /* Or subtle background: #f0f0f0; */
+    border: none;
+    /* Optional: subtle border left */
+    border-left: 1px solid #eee;
+    border-top-right-radius: 5px; /* Match input rounding */
+    border-bottom-right-radius: 5px;
+    padding: 0;
+    cursor: pointer;
+    color: #555; /* Icon/text color */
+    font-size: 1.2rem; /* Adjust icon/text size */
+    line-height: 1; /* Prevent extra spacing */
+    outline: none; /* Remove focus outline on button */
+    display: flex; /* Center icon/text inside button */
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle-btn:hover {
+    color: #000; /* Darken on hover */
+    background-color: #f8f8f8; /* Slight hover background */
+}
+/* --- End New Styles --- */
+
+
+/* --- Focus styles for inputs (including password) --- */
+.form-group-edit input:focus,
+.password-input-wrapper input:focus {
+    outline: none;
+    border-color: #5b89ac; /* Highlight focus */
+    box-shadow: 0 0 0 2px rgba(91, 137, 172, 0.2);
+}
+/* Apply focus style to wrapper border if desired when button is focused */
+/* .password-toggle-btn:focus-within .password-input-wrapper { ... } */
+
+
+/* Error Message Styling */
+.error-message {
+    color: #d9534f; /* Red for errors */
+    font-size: 0.85rem;
+    margin-top: 5px; /* Space above error message */
+    display: block; /* Ensure it takes block space */
+}
+.error-message.form-error { /* General form error styling */
+     text-align: center;
+     margin-top: 15px;
+     font-weight: bold;
+}
+
+/* Save Message Styling */
+.save-message {
+    color: #198754; /* Green for success */
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: -5px; /* Adjust spacing */
+    padding: 8px;
+    background-color: #d1e7dd;
+    border: 1px solid #a3cfbb;
+    border-radius: 4px;
+}
+
+/* Save Button */
+.save-button-container {
+    text-align: center; /* Center the button */
+    margin-top: 30px; /* Space above button */
+}
+
+.save-button-edit {
+    background-color: #5b89ac; /* Match header button blue */
+    color: white;
+    border: none;
+    padding: 10px 25px; /* Adjust padding */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.save-button-edit:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.save-button-edit:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* General Loading/Error Page Styles (if needed) */
+.loading, .page-error {
+    text-align: center; padding: 50px;
+}
+.page-error h2 { color: #d9534f; }
+.page-error button { margin-top: 20px; }

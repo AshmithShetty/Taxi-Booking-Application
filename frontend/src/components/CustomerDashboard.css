@@ -1,0 +1,256 @@
+/* frontend/src/components/CustomerDashboard.css */
+
+/* --- Base, Header, Body, Customer Info Styles (Keep from previous version) --- */
+.customer-dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white; /* Base background */
+}
+
+.dashboard-header {
+    background-color: #f6c600; /* Yellow */
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+}
+
+.header-nav {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+}
+
+.header-nav button {
+    background-color: #5b89ac; /* Theme blue */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500; /* Medium Rubik */
+    transition: opacity 0.2s ease;
+    font-family: inherit; /* Inherit Rubik */
+}
+.header-nav button:hover { opacity: 0.85; }
+.header-nav .logout-button { background-color: #d9534f; }
+.header-nav .logout-button:hover { opacity: 0.8; }
+
+.dashboard-body {
+    flex-grow: 1; /* Takes remaining vertical space */
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.customer-info {
+    flex-basis: 40%; /* Adjust width */
+    min-width: 300px; /* Minimum width before wrapping */
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 25px;
+    border-radius: 8px;
+    align-self: flex-start; /* Align to top */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    height: fit-content; /* Fit height to content */
+}
+.customer-info h2 {
+    margin-top: 0; margin-bottom: 20px; color: #333;
+    border-bottom: 2px solid #f6c600; padding-bottom: 10px;
+}
+.customer-info p { margin-bottom: 12px; line-height: 1.6; color: #555; }
+.customer-info p strong { color: #333; margin-right: 8px; }
+/* --- End Base Styles --- */
+
+
+/* --- UPDATED Ride Status Window --- */
+.ride-status-window {
+    flex-basis: 55%; /* Adjust width */
+    min-width: 350px; /* Minimum width before wrapping */
+    flex-grow: 1; /* Allow to grow if info section wraps */
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    padding: 20px 25px;
+    border-radius: 8px;
+    position: relative;
+    /* Use flexbox for height calculation */
+    display: flex;
+    flex-direction: column;
+    max-height: 75vh; /* Limit height */
+}
+
+.ride-status-window h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 2px solid #f6c600;
+    padding-bottom: 10px;
+    font-weight: 700;
+    flex-shrink: 0; /* Prevent title shrinking */
+}
+
+.clear-rides-button {
+    position: absolute;
+    top: 15px; /* Adjusted position slightly */
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.6rem; /* Slightly larger */
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    z-index: 10; /* Above list */
+}
+.clear-rides-button:hover { color: #777; }
+
+.ride-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Enable scroll for the list itself */
+    flex-grow: 1; /* Allow list to take remaining space */
+}
+
+.ride-item {
+    padding: 12px 10px; /* Adjusted padding */
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items top for multi-line info */
+    gap: 15px;
+}
+.ride-item:last-child { border-bottom: none; }
+
+.ride-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px; /* Reduced gap */
+    flex-grow: 1;
+    font-size: 0.9rem;
+    /* Prevent info from getting too small */
+    min-width: 0; /* Allows flex-shrinking */
+}
+
+.ride-info span { display: block; color: #555; line-height: 1.4; }
+.ride-info .ride-id { font-weight: bold; color: #333; }
+.ride-info .ride-loc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for long locations */
+    max-width: 250px; /* Limit width of location display (adjust) */
+}
+.ride-info .ride-status-text { font-style: italic; color: #777; margin-top: 2px; }
+
+
+.ride-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Reduced gap */
+    flex-shrink: 0;
+    align-items: flex-end; /* Align buttons right */
+}
+
+.ride-actions button {
+    padding: 4px 10px; /* Smaller buttons */
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.8rem; /* Smaller font */
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    min-width: 70px; /* Adjusted min width */
+    text-align: center;
+}
+
+.ride-actions .cancel-button {
+    background-color: #fbeaea; border-color: #e4a4a4; color: #c73d3d;
+}
+.ride-actions .cancel-button:hover:not(:disabled) {
+    background-color: #f8d3d3; border-color: #d17a7a;
+}
+
+.ride-actions .rate-button {
+    background-color: #eaf6ff; border-color: #a7cdea; color: #3a84c1;
+}
+.ride-actions .rate-button:hover:not(:disabled) {
+    background-color: #d6ecfc; border-color: #89b6d9;
+}
+
+.ride-actions button:disabled {
+    background-color: #f0f0f0; border-color: #e0e0e0;
+    color: #aaa; cursor: not-allowed; opacity: 0.6;
+}
+
+
+/* Status specific left border indicators */
+.ride-item { padding-left: 15px; position: relative; } /* Add padding for border */
+.ride-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px; /* Align with content */
+    bottom: 10px;
+    width: 4px;
+    background-color: #eee; /* Default grey */
+    border-radius: 2px;
+}
+.status-drafted::before { background-color: #adb5bd; /* Grey */ }
+.status-payment-done::before { background-color: #ffc107; /* Yellow */ }
+.status-pending-request::before { background-color: #fd7e14; /* Orange */ }
+.status-request-accepted::before { background-color: #0d6efd; /* Blue */ }
+.status-destination-reached::before { background-color: #198754; /* Green */ }
+
+
+/* Loading/Error/Empty States */
+.loading, .error, .empty-message {
+    padding: 20px;
+    text-align: center;
+    color: #555;
+    margin-top: 20px; /* Add some margin */
+}
+.error { color: #d9534f; }
+.inline-error {
+    color: #d9534f;
+    font-size: 0.9em;
+    margin-top: 15px;
+    text-align: center; /* Center align inline errors too */
+    width: 100%; /* Take full width */
+}
+
+/* Responsive adjustments for body */
+@media (max-width: 768px) {
+    .dashboard-body {
+        flex-direction: column; /* Stack sections vertically */
+        padding: 20px;
+        gap: 20px;
+    }
+    .customer-info, .ride-status-window {
+        flex-basis: auto; /* Reset basis */
+        width: 100%; /* Full width */
+        max-height: none; /* Remove max height on small screens */
+    }
+}
+
+.ride-info .verification-code {
+    margin-top: 5px;
+    font-size: 0.95em;
+    color: #0d6efd; /* Blue perhaps */
+    background-color: #e7f1ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block; /* Fit content */
+}
+.verification-code strong {
+    font-weight: bold;
+    letter-spacing: 1px; /* Space out code */
+}

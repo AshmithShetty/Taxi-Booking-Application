@@ -1,0 +1,153 @@
+/* frontend/src/components/DriverDataPage.css */
+
+.driver-data-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* --- Reusing Header Styles --- */
+.dashboard-header {
+    background-color: #f6c600; padding: 10px 25px; display: flex;
+    justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+.header-logo { height: 45px; width: auto; }
+.header-nav button {
+    background-color: #5b89ac; color: white; border: none; padding: 8px 15px; border-radius: 6px;
+    cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s ease;
+    font-family: inherit;
+}
+.header-nav button:hover { opacity: 0.85; }
+/* --- End Header Styles --- */
+
+.driver-data-body {
+    padding: 25px 30px;
+    flex-grow: 1;
+}
+
+.driver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.driver-header h2 { margin: 0; color: #333; font-weight: 700; }
+
+.driver-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    min-width: 250px;
+}
+.search-input:focus {
+     border-color: #5b89ac;
+     outline: none;
+}
+
+.add-driver-button {
+    background-color: #198754; /* Green */
+    color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;
+    font-size: 0.95rem; font-weight: 500; transition: background-color 0.2s ease;
+    font-family: inherit; white-space: nowrap;
+}
+.add-driver-button:hover { background-color: #157347; }
+
+
+.error-message.driver-error {
+    color: #d9534f; background-color: #fdd; border: 1px solid #fbc;
+    padding: 10px 15px; border-radius: 4px; margin-bottom: 20px; text-align: center;
+}
+
+.driver-table-container {
+    width: 100%; overflow-x: auto; background-color: #fff; border-radius: 8px;
+    border: 1px solid #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-top: 10px; /* Added margin */
+}
+
+.driver-table {
+    width: 100%; border-collapse: collapse; font-size: 0.9rem;
+}
+
+.driver-table th,
+.driver-table td {
+    padding: 10px 12px; /* Adjusted padding */
+    text-align: left; border-bottom: 1px solid #eee; white-space: nowrap;
+    vertical-align: middle; /* Align text vertically */
+}
+
+.driver-table th {
+    background-color: #f8f9fa; font-weight: 600; color: #495057;
+    position: sticky; top: 0; z-index: 10;
+}
+
+/* Sorting Styles */
+.driver-table th.sortable { cursor: pointer; position: relative; padding-right: 25px; }
+.driver-table th.sortable:hover { background-color: #e9ecef; }
+.driver-table th .sort-arrow {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    font-size: 0.8em; color: #aaa; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+}
+.driver-table th.sortable.ascending .sort-arrow { border-bottom: 5px solid #666; border-top: none; }
+.driver-table th.sortable.descending .sort-arrow { border-top: 5px solid #666; border-bottom: none; }
+
+/* Table Body Styles */
+.driver-table tbody tr:hover { background-color: #f0f8ff; }
+
+/* Inactive Driver Row Styling */
+.driver-table tbody tr.inactive-driver {
+    background-color: #f8f9fa; /* Light grey background */
+    color: #6c757d; /* Grey text */
+    /* font-style: italic; Optional */
+}
+.driver-table tbody tr.inactive-driver:hover {
+     background-color: #e9ecef; /* Slightly darker grey hover */
+}
+.driver-table tbody tr.inactive-driver .action-cell button.edit-btn {
+     color: #adb5bd; /* Grey out edit button visually too */
+     cursor: not-allowed;
+}
+
+
+/* Action Cell */
+.action-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+.action-cell button {
+    background: none; border: none; cursor: pointer; font-size: 1.1rem;
+    padding: 4px 6px; margin: 0 3px; line-height: 1;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    vertical-align: middle; /* Align icons better */
+}
+.action-cell button:disabled { cursor: not-allowed; opacity: 0.4; }
+
+.action-cell .edit-btn { color: #0d6efd; }
+.action-cell .edit-btn:hover:not(:disabled) { color: #0a58ca; }
+/* Disabled style specifically for inactive row */
+.inactive-driver .action-cell .edit-btn { color: #adb5bd !important; }
+
+
+.action-cell .delete-btn { color: #dc3545; }
+.action-cell .delete-btn:hover:not(:disabled) { color: #bb2d3b; }
+
+.action-cell .reactivate-btn { color: #198754; font-size: 1.2rem; }
+.action-cell .reactivate-btn:hover:not(:disabled) { color: #146c43; }
+
+
+.loading, .empty-message {
+    padding: 40px 20px; text-align: center; color: #6c757d; font-style: italic;
+}

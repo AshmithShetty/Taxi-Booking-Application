@@ -1,0 +1,173 @@
+/* frontend/src/components/VehicleDataPage.css */
+
+.vehicle-data-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* --- Reusing Header Styles --- */
+.dashboard-header { /* ... (copy from previous pages) ... */
+     background-color: #f6c600; padding: 10px 25px; display: flex;
+    justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+.header-logo { height: 45px; width: auto; }
+.header-nav button { /* ... (button styles) ... */
+    background-color: #5b89ac; color: white; border: none; padding: 8px 15px; border-radius: 6px;
+    cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s ease;
+    font-family: inherit;
+}
+.header-nav button:hover { opacity: 0.85; }
+/* --- End Header Styles --- */
+
+.vehicle-data-body {
+    padding: 25px 30px;
+    flex-grow: 1;
+}
+
+.vehicle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px;
+}
+
+.vehicle-header h2 {
+    margin: 0;
+    color: #333;
+    font-weight: 700;
+}
+
+.add-vehicle-button {
+    background-color: #198754; /* Green */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+.add-vehicle-button:hover {
+    background-color: #157347;
+}
+
+
+.error-message.vehicle-error { /* Specific error styling */
+    color: #d9534f; background-color: #fdd; border: 1px solid #fbc;
+    padding: 10px 15px; border-radius: 4px; margin-bottom: 20px; text-align: center;
+}
+
+.vehicle-table-container { /* Same as history table container */
+    width: 100%;
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.vehicle-table { /* Same as history table */
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.vehicle-table th,
+.vehicle-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+.vehicle-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 10;
+}
+
+/* --- Sorting Styles --- */
+.vehicle-table th.sortable {
+    cursor: pointer;
+    position: relative; /* For arrow positioning */
+    padding-right: 25px; /* Space for arrow */
+}
+.vehicle-table th.sortable:hover {
+     background-color: #e9ecef;
+}
+.vehicle-table th .sort-arrow {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #aaa; /* Default arrow color */
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+.vehicle-table th.sortable.ascending .sort-arrow {
+    border-bottom: 5px solid #666; /* Pointing up */
+    border-top: none;
+}
+.vehicle-table th.sortable.descending .sort-arrow {
+    border-top: 5px solid #666; /* Pointing down */
+     border-bottom: none;
+}
+/* --- End Sorting Styles --- */
+
+
+.vehicle-table tbody tr:hover {
+    background-color: #f0f8ff; /* Light blue hover */
+}
+
+/* Right-align ID columns */
+.vehicle-table td:nth-child(1), /* Vehicle ID */
+.vehicle-table td:nth-child(4) { /* Driver ID */
+    text-align: right;
+}
+
+.loading, .empty-message { /* Same styles */
+    padding: 40px 20px; text-align: center; color: #6c757d; font-style: italic;
+}
+
+.action-cell {
+    text-align: center; /* Center align action buttons */
+    white-space: nowrap;
+}
+.action-cell button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem; /* Adjust icon size */
+    padding: 4px 6px;
+    margin: 0 3px;
+    line-height: 1;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    vertical-align: middle; /* Align icons better */
+}
+/* General disabled style */
+.action-cell button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+    color: #adb5bd !important; /* Grey out disabled icon */
+}
+
+.action-cell .delete-btn {
+    color: #dc3545; /* Red */
+}
+.action-cell .delete-btn:hover:not(:disabled) {
+    color: #bb2d3b;
+}

@@ -1,0 +1,379 @@
+/* frontend/src/components/BookRidePage.css */
+
+.book-ride-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9; /* Slightly off-white background */
+}
+
+/* Reuse dashboard header styles */
+.dashboard-header {
+    background-color: #f6c600; /* Yellow */
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+}
+
+.header-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.header-nav button {
+    background-color: #5b89ac; /* Theme blue */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    font-family: inherit;
+}
+
+.header-nav button:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.header-nav button.make-payment-button {
+    background-color: #4CAF50; /* Green for payment */
+}
+.header-nav button.make-payment-button:hover:not(:disabled) {
+     background-color: #45a049;
+}
+
+.header-nav button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Body Styles */
+.book-ride-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; /* Default: column layout */
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden; /* Prevent body scroll if map/form grows too large */
+}
+
+.booking-form-container {
+    background-color: white;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Consistent gap between form groups */
+    flex-shrink: 0;
+}
+
+.booking-form-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #f6c600;
+    padding-bottom: 8px;
+    font-weight: 700;
+}
+
+.form-group-br {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align labels top */
+    gap: 10px; /* Gap between label and input/control area */
+}
+
+/* Add relative positioning for containing absolute suggestions */
+.form-group-br.search-group {
+    position: relative;
+    flex-wrap: nowrap;
+    align-items: center; /* Vertically center label and input for search */
+}
+
+
+.form-group-br label {
+    flex-basis: 120px; /* Fixed width */
+    flex-shrink: 0;
+    font-weight: 500;
+    color: #444;
+    padding-top: 9px; /* Align label baseline with input text */
+    box-sizing: border-box;
+}
+
+.form-group-br input[type="text"] { /* Style for text inputs only */
+    flex-grow: 1;
+    padding: 9px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    min-width: 150px;
+    box-sizing: border-box;
+    font-family: inherit; /* Ensure font consistency */
+}
+.form-group-br input:focus {
+     border-color: #5b89ac;
+     outline: none;
+     box-shadow: 0 0 0 2px rgba(91, 137, 172, 0.2); /* Added focus shadow */
+}
+
+
+/* --- Styles for Taxi Type Options --- */
+.form-group-br.taxi-type-group {
+    align-items: flex-start; /* Align label top */
+}
+.form-group-br.taxi-type-group label {
+     padding-top: 0; /* Reset padding for this label */
+     margin-top: 10px; /* Add margin to align with button tops */
+     margin-bottom: 5px;
+     flex-basis: 120px;
+}
+
+
+.taxi-type-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* Space between options */
+    flex-grow: 1;
+    justify-content: space-between; /* Distribute items */
+}
+
+.taxi-type-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 90px;
+    text-align: center;
+    flex: 1 1 auto; /* Grow, shrink, auto basis */
+    box-sizing: border-box;
+    font-family: inherit; /* Ensure font consistency */
+}
+
+.taxi-type-option:hover {
+    border-color: #888;
+    background-color: #f1f3f5;
+}
+
+.taxi-type-option.selected {
+    border-color: #5b89ac; /* Highlight selected with theme blue */
+    background-color: #e7f1ff;
+    box-shadow: 0 0 5px rgba(91, 137, 172, 0.4);
+}
+
+.taxi-type-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 6px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.taxi-type-option span {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+}
+/* --- End Taxi Type Styles --- */
+
+.location-display {
+    font-size: 0.85em;
+    color: #555;
+    margin: -15px 0 5px 0; /* Adjust margin to appear closer to input */
+    padding-left: 130px; /* Align under input (label width + gap) */
+    font-style: italic;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.ride-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 1.1em;
+}
+.ride-details p { margin: 5px 0; color: #333; }
+.ride-details p strong { margin-right: 8px; color: #000; }
+.calculating { font-style: italic; color: #888; }
+
+
+.map-container-br {
+    flex-grow: 1;
+    min-height: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+
+.error-message.br-error {
+    color: #d9534f;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-top: 5px;
+    width: 100%;
+    padding-left: 130px; /* Align with inputs */
+}
+
+/* --- Styles for Suggestions --- */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 130px; /* Align with input start (label width + gap) */
+    /* Adjust right/width based on map select button */
+    right: 65px; /* Approx width of map button + gap */
+    width: auto; /* Let it size between left/right */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background-color: #f0f0f0; }
+
+.suggestion-item.no-results {
+    padding: 10px 15px; color: #888; font-style: italic;
+    text-align: center; cursor: default;
+}
+.suggestion-item.no-results:hover { background-color: white; }
+
+/* Loading Indicator */
+.loading-indicator {
+    font-size: 0.8em; padding: 0 5px; color: #888;
+    display: inline-block; animation: spin 1s linear infinite;
+    line-height: 1; position: absolute;
+    /* Position next to input, before map button */
+    right: 65px; /* Approx width of map button + gap */
+    top: 50%; transform: translateY(-50%);
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+
+/* --- Styles for Map Selection --- */
+.map-select-btn {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+.map-select-btn:hover:not(:disabled) { background-color: #5a6268; }
+.map-select-btn.active { background-color: #0d6efd; box-shadow: 0 0 5px rgba(13, 110, 253, 0.5); }
+.map-select-btn:disabled { background-color: #cccccc; cursor: not-allowed; opacity: 0.7; }
+
+.map-select-indicator {
+    font-size: 0.9em; font-style: italic; color: #0d6efd; background-color: #e7f1ff;
+    padding: 8px 12px; border-radius: 4px; margin-top: -10px; margin-bottom: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.cancel-map-select-btn {
+    background: none; border: none; color: #dc3545; font-weight: bold;
+    cursor: pointer; font-size: 0.9em; padding: 2px 5px;
+}
+.cancel-map-select-btn:hover { text-decoration: underline; }
+
+.crosshair-cursor { cursor: crosshair !important; }
+/* --- End Map Selection Styles --- */
+
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .book-ride-body {
+        flex-direction: row;
+        align-items: stretch;
+        max-height: calc(100vh - 70px);
+         overflow: hidden;
+    }
+
+    .booking-form-container {
+        flex-basis: 40%;
+        max-width: 450px;
+        max-height: 100%;
+        overflow-y: auto;
+        flex-shrink: 0;
+        gap: 20px;
+    }
+
+    .map-container-br {
+        flex-basis: 60%;
+        height: auto;
+        min-height: 400px;
+    }
+     .error-message.br-error, .location-display {
+       padding-left: 0;
+       margin-left: 130px;
+     }
+     .form-group-br.taxi-type-group label {
+         margin-top: 0;
+         padding-top: 9px;
+         margin-bottom: 0;
+     }
+     .suggestions-list {
+         left: 130px;
+         right: 65px; /* Maintain space from button */
+         width: auto; /* Adjust width */
+     }
+}
+
+@media (min-width: 1024px) {
+    .booking-form-container {
+         flex-basis: 35%;
+         max-width: 500px;
+    }
+     .map-container-br {
+         flex-basis: 65%;
+     }
+}
+
+/* Final check on alignment values (130px used here) based on label basis (120px) + gap (10px) */
+/* Adjust suggestion list/error/location alignment if needed */

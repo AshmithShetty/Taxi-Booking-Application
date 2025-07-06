@@ -1,0 +1,209 @@
+/* frontend/src/components/Modal.css */
+
+.modal-overlay {
+    position: fixed;
+    z-index: 1100; /* High z-index */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px; /* Default max-width */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+.modal-close-btn:hover {
+    color: #555;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 700;
+}
+
+.modal-form-group {
+    margin-bottom: 18px;
+}
+
+.modal-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #444;
+    font-size: 0.9em;
+}
+
+/* General input styles */
+.modal-form-group input[type="text"],
+.modal-form-group input[type="tel"],
+.modal-form-group input[type="email"],
+.modal-form-group input[type="password"], /* Base style for password input */
+.modal-form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.modal-form-group input:focus,
+.modal-form-group select:focus {
+     border-color: #5b89ac;
+     outline: none;
+     box-shadow: 0 0 0 2px rgba(91, 137, 172, 0.2); /* Add focus shadow */
+}
+.modal-form-group input:disabled,
+.modal-form-group select:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* --- Styles for Password Input Wrapper and Toggle Button --- */
+.password-input-wrapper {
+    position: relative; /* For positioning the button */
+    display: flex; /* Use flex to occupy space correctly */
+    align-items: center; /* Vertically align if needed */
+    width: 100%; /* Take full width */
+}
+
+/* Adjust password input within the wrapper */
+/* Select specifically inputs used for password that are inside the wrapper */
+.password-input-wrapper input[type="password"],
+.password-input-wrapper input[type="text"] {
+    /* Ensure it takes full width of the wrapper */
+    flex-grow: 1;
+    width: 100%; /* Double ensure width */
+    /* Add padding-right for the button */
+    padding-right: 40px !important; /* Use important if needed to override general input padding */
+    /* Reset left/top/bottom padding if needed, or inherit */
+    padding-left: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* Make sure other styles are applied if not inherited */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Toggle Button Styles */
+.password-toggle-btn {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 38px; /* Width of the button */
+    background: none;
+    border: none;
+    border-left: 1px solid #eee; /* Optional subtle separator */
+    border-top-right-radius: 5px; /* Match input rounding slightly */
+    border-bottom-right-radius: 5px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #555; /* Icon color */
+    font-size: 1.1rem; /* Adjust icon size */
+    line-height: 1; /* Prevent extra spacing */
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.password-toggle-btn:hover {
+    color: #000; /* Darken icon on hover */
+}
+/* --- End Password Toggle Styles --- */
+
+
+.modal-actions {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.modal-submit-btn {
+    background-color: #5b89ac; /* Theme blue */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.modal-submit-btn:hover:not(:disabled) {
+    opacity: 0.9;
+}
+.modal-submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.modal-error-message,
+.modal-success-message {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    margin-bottom: -5px;
+    padding: 8px;
+    border-radius: 4px;
+}
+.modal-error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+.modal-success-message {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+}
+
+/* Styles kept from Verification Modal */
+.verification-code-input {
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 3px; /* Space out characters */
+    text-transform: uppercase; /* Optional: force uppercase */
+}
+.modal-submit-btn.verify-btn {
+    background-color: #198754; /* Maybe green for verify */
+}
+ .modal-submit-btn.verify-btn:hover:not(:disabled) {
+     background-color: #157347;
+ }

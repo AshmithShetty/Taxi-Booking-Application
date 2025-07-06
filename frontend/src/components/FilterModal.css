@@ -1,0 +1,242 @@
+/* frontend/src/components/FilterModal.css */
+
+.filter-modal-overlay {
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Allow scrolling the overlay if modal is too tall */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    padding: 20px; /* Padding around the modal */
+    box-sizing: border-box;
+}
+
+.filter-modal-content {
+    background-color: #fefefe;
+    padding: 25px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%; /* Start with full width */
+    max-width: 650px; /* Adjust max width as needed */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+    box-sizing: border-box;
+    max-height: 90vh; /* Limit modal height */
+    overflow-y: auto; /* Allow modal content itself to scroll if needed */
+}
+
+.filter-modal-content h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px; /* Increase spacing */
+    font-weight: 700;
+    color: #444;
+    border-bottom: 1px solid #eee; /* Add a subtle separator */
+    padding-bottom: 15px;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increase gap between rows */
+}
+
+.filter-row {
+    display: flex;
+    gap: 25px; /* Increase gap between groups */
+    flex-wrap: wrap; /* Allow groups to wrap onto next line */
+    align-items: flex-start; /* Align top of elements in a row */
+    /* align-items: flex-end; Align bottom of elements in a row - changed to flex-start */
+}
+
+.filter-group {
+    flex: 1 1 calc(50% - 13px); /* Try to make groups take ~half width, accounting for gap */
+    min-width: 200px; /* Minimum width before wrapping/shrinking */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-sizing: border-box;
+    /* Add position relative to contain absolute error messages */
+    position: relative;
+    padding-bottom: 1.5em; /* Add padding at the bottom to reserve space for potential error */
+}
+
+.filter-group label {
+    font-weight: 500;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 2px; /* Slight space below label */
+}
+
+.filter-group input[type="text"],
+.filter-group input[type="number"],
+.filter-group input[type="date"],
+.filter-group select {
+    padding: 9px 11px; /* Adjusted padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    width: 100%; /* Make inputs fill their group container */
+}
+.filter-group input:focus, .filter-group select:focus {
+     border-color: #5b89ac;
+     outline: none;
+}
+
+/* Specific styling for range inputs container */
+.filter-group.range-group {
+    /* Inherits flex rules from .filter-group */
+}
+
+/* Layout WITHIN a range group */
+.range-input-container {
+    display: flex;
+    align-items: center; /* Align input and separator */
+    gap: 8px; /* Gap between min input, separator, max input */
+    width: 100%; /* Take full width of the group */
+}
+
+.range-input-container input[type="number"] {
+    flex: 1 1 0; /* Allow inputs to grow and shrink, base size 0 */
+    width: auto; /* Override width: 100% from general rule */
+    min-width: 60px; /* Prevent inputs from becoming too small */
+}
+.range-input-container span { /* Hyphen separator */
+     color: #555;
+     flex-shrink: 0; /* Don't shrink the hyphen */
+     padding: 0 2px; /* Add a little space around hyphen */
+}
+
+
+/* Specific adjustments for date range */
+.filter-group.date-range-group { /* Target the group containing date range */
+     /* Inherits flex rules */
+}
+.date-range-group .range-input-container{
+     /* Adjustments for date inputs within container if needed */
+}
+.filter-group input[type="date"] {
+    min-width: 130px; /* Ensure date inputs have enough space */
+    padding-right: 10px;
+}
+
+
+/* Buttons */
+.filter-modal-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    justify-content: flex-end;
+    gap: 10px; /* Adjusted gap */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.filter-modal-buttons button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    font-family: inherit;
+}
+
+.filter-apply-btn {
+    background-color: #5b89ac; color: white; order: 3; /* Place last */
+}
+.filter-apply-btn:hover { opacity: 0.9; }
+/* Style disabled apply button */
+.filter-apply-btn:disabled {
+     background-color: #cccccc;
+     cursor: not-allowed;
+     opacity: 0.7;
+ }
+.filter-apply-btn:disabled:hover {
+    opacity: 0.7; /* Prevent hover effect when disabled */
+ }
+
+.filter-cancel-btn {
+    background-color: #f0f0f0; color: #555; border: 1px solid #ccc; order: 2;
+}
+.filter-cancel-btn:hover { background-color: #e7e7e7; }
+
+.filter-remove-btn {
+    background-color: #fff0f0; color: #dc3545; border: 1px solid #f5c6cb;
+    margin-right: auto; /* Push to the left */ order: 1;
+}
+.filter-remove-btn:hover { background-color: #f8d7da; }
+
+
+/* --- Error Message Styling within Modal --- */
+.error-message.filter-error {
+    color: #dc3545; /* Bootstrap danger red */
+    font-size: 0.8em;
+    position: absolute; /* Position absolutely within the group */
+    bottom: 0px; /* Position at the bottom of the reserved space */
+    left: 0; /* Align left within the group */
+    width: 100%; /* Take full width of the group */
+    text-align: left;
+    line-height: 1.2;
+    padding-left: 5px; /* Slight indent */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Adjust error position specifically for range groups if needed */
+/* .filter-group.range-group .error-message.filter-error { ... } */
+
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .filter-row {
+        flex-direction: column; /* Stack groups vertically */
+        gap: 20px; /* Adjust vertical gap */
+        align-items: stretch; /* Stretch groups full width */
+    }
+    .filter-group {
+         flex-basis: auto; /* Reset basis */
+         min-width: 100%; /* Full width */
+         padding-bottom: 1.7em; /* Slightly more space for errors on mobile */
+    }
+     .filter-group.range-group label {
+         min-width: auto; /* Reset min-width for label */
+         margin-bottom: 6px; /* Add margin back */
+     }
+     .filter-group.range-group .range-input-container{
+         flex-direction: row; /* Keep inputs side-by-side */
+     }
+     .date-range-group .range-input-container{
+        flex-direction: column; /* Stack date inputs vertically */
+        align-items: stretch;
+     }
+      .date-range-group span {
+        display: none; /* Hide hyphen on mobile */
+      }
+     .filter-modal-buttons {
+         justify-content: center; /* Center buttons */
+     }
+      .filter-remove-btn {
+          margin-right: 0; /* Reset margin */
+          width: 100%; /* Make remove full width */
+          order: 3; /* Place last on mobile */
+          margin-bottom: 10px; /* Add margin when wrapping */
+      }
+       .filter-cancel-btn { order: 1; }
+       .filter-apply-btn { order: 2; }
+
+    /* Ensure error messages are positioned correctly on mobile */
+     .error-message.filter-error {
+         position: relative; /* Change from absolute on mobile? */
+         bottom: auto;
+         margin-top: 4px; /* Add margin top */
+         padding-left: 0; /* Remove padding */
+     }
+}

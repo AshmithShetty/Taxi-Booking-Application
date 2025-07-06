@@ -1,0 +1,193 @@
+/* frontend/src/components/MakePaymentPage.css */
+
+.make-payment-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* --- Reusing Header Styles --- */
+.dashboard-header {
+    background-color: #f6c600;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+}
+
+.header-nav button {
+    background-color: #aeb6b4; /* Grey for 'Edit Ride' - less prominent */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    font-family: inherit;
+}
+.header-nav button:hover:not(:disabled) {
+    opacity: 0.85;
+    background-color: #9fa8a6;
+}
+.header-nav button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+/* --- End Header Styles --- */
+
+
+.payment-body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align container top */
+    padding: 40px 20px;
+}
+
+.payment-container {
+    background-color: white;
+    padding: 30px 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Adjust max-width as needed */
+    box-sizing: border-box;
+}
+
+.payment-container h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 700; /* Rubik Bold */
+}
+
+.ride-summary-section,
+.payment-method-section {
+    margin-bottom: 25px;
+}
+
+.ride-summary-section h3,
+.payment-method-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    font-weight: 500; /* Rubik Medium */
+    font-size: 1.1em;
+}
+
+.ride-summary-section p {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: #555;
+}
+.ride-summary-section p strong {
+    color: #333;
+    margin-right: 8px;
+    display: inline-block;
+    min-width: 100px; /* Align text */
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Space between radio buttons */
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between radio and text */
+    cursor: pointer;
+    font-size: 1rem;
+    color: #444;
+}
+
+.radio-group input[type="radio"] {
+    accent-color: #5b89ac; /* Color the radio button */
+    width: 18px; /* Adjust size */
+    height: 18px;
+    cursor: pointer;
+}
+.radio-group input[type="radio"]:disabled {
+     cursor: not-allowed;
+     opacity: 0.6;
+}
+.radio-group label:has(input[type="radio"]:disabled) { /* Style label when radio is disabled */
+     cursor: not-allowed;
+     color: #888;
+}
+
+
+.pay-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pay-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    min-width: 200px;
+}
+
+.pay-button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.pay-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.error-message.payment-error {
+    color: #d9534f;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background-color: #fdd;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #fbc;
+}
+
+/* Loading/Error States for missing ride details */
+.loading-payment,
+.payment-error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+.payment-error-page h2 { color: #d9534f; }
+.payment-error-page button { margin-top: 20px; }

@@ -1,0 +1,204 @@
+/* frontend/src/components/RideHistoryPage.css */
+
+.ride-history-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* --- Reusing Header Styles --- */
+.dashboard-header { /* ... (copy from CustomerDashboard.css or define globally) ... */
+    background-color: #f6c600; padding: 10px 25px; display: flex;
+    justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+.header-logo { height: 45px; width: auto; }
+.header-nav button { /* ... (copy relevant button styles) ... */
+    background-color: #5b89ac; color: white; border: none; padding: 8px 15px; border-radius: 6px;
+    cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s ease;
+    font-family: inherit;
+}
+.header-nav button:hover { opacity: 0.85; }
+/* --- End Header Styles --- */
+
+.history-body {
+    padding: 25px 30px; /* Adjust padding */
+    flex-grow: 1;
+}
+
+.history-body h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+.history-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align filter button left */
+}
+
+.filter-button {
+    background-color: #6c757d; /* Greyish button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+}
+.filter-button:hover {
+    background-color: #5a6268;
+}
+
+
+.error-message.history-error {
+    color: #d9534f;
+    background-color: #fdd;
+    border: 1px solid #fbc;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.history-table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.history-table th,
+.history-table td {
+    padding: 12px 15px; /* Adjust padding */
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap; /* Prevent wrapping by default */
+}
+/* Allow wrapping for location columns */
+.history-table td:nth-child(4), /* Pickup */
+.history-table td:nth-child(5) { /* Dropoff */
+    white-space: normal;
+    min-width: 150px; /* Give locations some min width */
+    max-width: 250px; /* Limit max width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.history-table th {
+    background-color: #f8f9fa;
+    font-weight: 600; /* Semi-bold */
+    color: #495057;
+    position: sticky; /* Make header sticky if container scrolls */
+    top: 0;
+    z-index: 10;
+}
+
+.history-table tbody tr:hover {
+    background-color: #f0f8ff; /* Light blue hover */
+}
+
+.history-table td:nth-child(1), /* Ride ID */
+.history-table td:nth-child(7), /* Distance */
+.history-table td:nth-child(8), /* Fare */
+.history-table td:nth-child(9) { /* Rating */
+    text-align: right;
+}
+
+.history-table th.sortable { /* Target history table specifically */
+    cursor: pointer;
+    position: relative; /* For arrow positioning */
+    padding-right: 25px; /* Space for arrow */
+}
+.history-table th.sortable:hover {
+     background-color: #e9ecef;
+}
+.history-table th .sort-arrow {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #aaa; /* Default arrow color */
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: none; /* Default no arrow */
+    border-bottom: none;
+}
+.history-table th.sortable.ascending .sort-arrow {
+    border-bottom: 5px solid #666; /* Pointing up */
+    border-top: none;
+}
+.history-table th.sortable.descending .sort-arrow {
+    border-top: 5px solid #666; /* Pointing down */
+     border-bottom: none;
+}
+
+.loading, .empty-message {
+    padding: 40px 20px;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* --- NEW Styles for Applied Filter Tags --- */
+.applied-filters-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap */
+    gap: 8px; /* Space between tags */
+    margin-bottom: 15px; /* Space below tags, above table */
+    padding: 10px;
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    align-items: center; /* Align items vertically */
+}
+
+.applied-filters-container > span:first-child { /* Style "Applied Filters:" text */
+     font-weight: 500;
+     color: #6c757d;
+     margin-right: 5px;
+}
+
+.filter-tag {
+    display: inline-flex; /* Align text and button */
+    align-items: center;
+    background-color: #e2e3e5; /* Tag background */
+    color: #495057;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Prevent wrapping within tag */
+}
+
+.remove-tag-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 1.1em; /* Make 'x' slightly larger */
+    font-weight: bold;
+    margin-left: 6px; /* Space between text and button */
+    padding: 0 2px; /* Small padding */
+    line-height: 1; /* Prevent extra height */
+}
+.remove-tag-btn:hover {
+    color: #dc3545; /* Red on hover */
+}
